@@ -18,10 +18,10 @@ import UIKit
     
     /// The positions to select for placement of the label view.
     public enum Position:String {
-        case TopLeft = "topleft"
-        case TopRight = "topright"
-        case BottomRight = "bottomright"
-        case BottomLeft = "bottomleft"
+        case topLeft = "topleft"
+        case topRight = "topright"
+        case bottomRight = "bottomright"
+        case bottomLeft = "bottomleft"
     }
     
     private var length = CGFloat()
@@ -44,7 +44,7 @@ import UIKit
     }
     
     /// The position of the label view.
-    public var position:Position = .TopLeft {
+    public var position:Position = .topLeft {
         didSet {
             setNeedsDisplay()
         }
@@ -110,11 +110,11 @@ import UIKit
         length = (lengthPercentage/100) * min(rectWidth, rectHeight)
         
         switch position {
-        case .TopRight:
+        case .topRight:
             newRect = CGRect(x: rectWidth-length, y: 0, width: length, height: length)
-        case .BottomLeft:
+        case .bottomLeft:
             newRect = CGRect(x: 0, y: rectHeight-length, width: length, height: length)
-        case .BottomRight:
+        case .bottomRight:
             newRect = CGRect(x: rectWidth-length, y: rectHeight-length, width: length, height: length)
         default:
             newRect = CGRect(x: 0, y: 0, width: length, height: length)
@@ -132,11 +132,11 @@ import UIKit
         let rectHeight = newRect.width + rectOriginY
         
         switch position {
-        case .TopRight:
+        case .topRight:
             pointValues = [rectOriginX,rectOriginY, rectWidth, rectOriginY, rectWidth, rectHeight, rectOriginX, rectOriginY]
-        case .BottomLeft:
+        case .bottomLeft:
             pointValues = [rectOriginX, rectOriginY, rectWidth, rectHeight, rectOriginX, rectHeight, rectOriginX, rectOriginY]
-        case .BottomRight:
+        case .bottomRight:
             pointValues = [rectWidth, rectOriginY, rectWidth, rectHeight, rectOriginX, rectHeight, rectWidth, rectOriginY]
         default:
             // Default is TopLeft
@@ -186,15 +186,15 @@ import UIKit
         let (textWidth,textHeight) = getTextCGSize(labelText)
         
         switch position {
-        case .TopRight:
+        case .topRight:
             x = (2/3*rectWidth+rectOriginX)-textWidth/2
             y = (1/3*rectWidth+rectOriginY)-textHeight/2
             labelAngle = (3.14/4)
-        case .BottomRight:
+        case .bottomRight:
             x = (2/3*rectWidth+rectOriginX)-textWidth/2
             y = (2/3*rectWidth+rectOriginY)-textHeight/2
             labelAngle = (-3.14/4)
-        case .BottomLeft:
+        case .bottomLeft:
             x = (1/3*rectWidth+rectOriginX)-textWidth/2
             y = (2/3*rectWidth+rectOriginY)-textHeight/2
             labelAngle = (3.14/4)
@@ -209,7 +209,7 @@ import UIKit
     
     /// Get the width and height of the text.
     private func getTextCGSize(_ text:String) -> (CGFloat,CGFloat) {
-        let textAttr = [NSAttributedStringKey.font:labelFont]
+        let textAttr = [NSAttributedStringKey.font: labelFont]
         let nsText = text as NSString
         let cgSize = nsText.size(withAttributes: textAttr)
         
